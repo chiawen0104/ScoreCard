@@ -3,7 +3,7 @@ import ScoreCard from "../models/ScoreCard";
 
 const router = Router();
 
-router.delete("/cards", (_, res) => { //Clear
+router.delete("/clear", (_, res) => { //Clear
     const Clear = async () => {
         await ScoreCard.deleteMany({})
         res.json({message: 'Database cleared'})
@@ -12,7 +12,7 @@ router.delete("/cards", (_, res) => { //Clear
     Clear()
 });
 
-router.post("/card", (req, res) => { //Add
+router.post("/add", (req, res) => { //Add
     const nm = req.body.name
     const sb = req.body.subject
     const sc = req.body.score
@@ -38,7 +38,7 @@ router.post("/card", (req, res) => { //Add
     Add()
 });
 
-router.get("/cards", (req, res) => { //Query 
+router.get("/query", (req, res) => { //Query 
     const type = req.query.type
     const str = req.query.queryString
 

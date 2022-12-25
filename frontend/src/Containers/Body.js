@@ -56,7 +56,7 @@ const Body = () => {
   const handleAdd = async () => {
     const {
       data: { message, card },
-    } = await api.post('/card', {
+    } = await api.post('/add', {
       name,
       subject,
       score,
@@ -69,7 +69,7 @@ const Body = () => {
   const handleQuery = async () => {
     const {
       data: { messages, message },
-    } = await api.get('/cards', {
+    } = await api.get('/query', {
       params: {
         type: queryType,
         queryString,

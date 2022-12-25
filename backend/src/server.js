@@ -9,20 +9,6 @@ import routes from './routes';
 
 const app = express();
 
-// app.use(cors());
-// app.use(express.json());
-
-// db.connect();
-// app.use('/api', routes);
-
-
-// define routes
-// app.get("/", (req, res) => {
-//     // send the request back to the client
-//     console.log("GET /");
-//     res.send({ message: "Hello from the server!" }).status(200);
-// });
-
 if (process.env.NODE_ENV === "production") {
     console.log("production mode");
     const __dirname = path.resolve();

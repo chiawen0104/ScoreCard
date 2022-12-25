@@ -21,7 +21,7 @@ const Header = () => {
   const handleClear = async () => {
     const {
       data: { message },
-    } = await api.delete('/cards');
+    } = await api.delete('/clear');
     addRegularMessage(message);
     resetMessages(); //clear all messages
   };
