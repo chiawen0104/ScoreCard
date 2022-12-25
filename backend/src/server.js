@@ -24,7 +24,7 @@ const app = express();
 // });
 
 if (process.env.NODE_ENV === "production") {
-    console.log("production");
+    console.log("production mode");
     const __dirname = path.resolve();
     app.use(express.static(path.join(__dirname, "../frontend", "build")));
     app.get("/*", function (req, res) {
@@ -32,14 +32,13 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 else {
-    //init middleware
-    console.log("development")
-    app.use(cors());
-    app.use(express.json());
-
-    db.connect();
-    app.use('/api', routes);
+    console.log("development mode")
 }
+
+app.use(cors());
+app.use(express.json());
+app.use('/api', routes);
+db.connect();
 
 // define server
 const port = process.env.PORT || 4000;
