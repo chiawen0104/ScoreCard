@@ -13,29 +13,33 @@ const app = express();
 // app.use(express.json());
 
 // db.connect();
-// app.use('/', routes);
+// app.use('/api', routes);
 
-// init middleware
-if (process.env.NODE_ENV === "development") {
-    app.use(cors());
-}
+
 // define routes
-app.get("/api", (req, res) => {
-    // send the request back to the client
-    console.log("GET /api");
-    res.send({ message: "Hello from the server!" }).status(200);
-});
+// app.get("/", (req, res) => {
+//     // send the request back to the client
+//     console.log("GET /");
+//     res.send({ message: "Hello from the server!" }).status(200);
+// });
 
 if (process.env.NODE_ENV === "production") {
+    console.log("production");
     const __dirname = path.resolve();
     app.use(express.static(path.join(__dirname, "../frontend", "build")));
     app.get("/*", function (req, res) {
         res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
     });
 }
+else {
+    //init middleware
+    console.log("development")
+    app.use(cors());
+    app.use(express.json());
 
-// connect db
-db.connect();
+    db.connect();
+    app.use('/api', routes);
+}
 
 // define server
 const port = process.env.PORT || 4000;
